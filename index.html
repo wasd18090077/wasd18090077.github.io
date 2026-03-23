@@ -1,121 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My First Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sam Yip | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-   <h1>Welcome to My Website!</h1>
-   <p>Hello! My name is Sam Yip and this is my first website.</p>
-   <h2>About Me</h2>
-   <p>I am learning web development at the University of York.</p>
-   <h2>My Interests</h2>
-   <ul>
-      <li>Web Development</li>
-      <li>Computer Science</li>
-      <li>Technology</li>
-   </ul>
-    <section id="production-diary">
-  <h2>Production diary – Week 15</h2>
-  <p><strong>Date:</strong> 10 February 2026</p>
-  <p>
-    I am most happy with making my own site.
-  </p>
-  <p>
-    I found it difficult to coding the html.
-  </p>
-  <p>
-    Next time I want to improve the visual style of the website by adding custom CSS and experimenting with different colours.
-  </p>
-  </section>
-  <p>
-    This week I learn many new things from my lessons, like some fuction of program and learn about logic gate from computer achitecture.
-    I pround of my whole website, beacuse this is my first time to have a own website, although it just need to press few button to make it, I will make the website better at the future.
-    I think writing in english is the most challenging for me. Because english not my first language and I not good at it. I always feel difficult of using english.
-    I learn binary from this work. At the past, I just know a little about binary, but now, I already fully understand what binary is, I'm glad, that I can learn about binary.
-    About one concrete improvement that I want to make next week, I like to make my website look better ,such as improving the visual style.
-  </p>
-      <section id="contact">
-   <h2>Get In Touch</h2>
-   <form id="contact-form">
-   <div>
-   <label for="name">Your Name</label>
-   <input type="text" id="name" name="name" required
-   placeholder="Jane Smith" />
-   </div>
-   <div>
-   <label for="email">Your Email</label>
-   <input type="email" id="email" name="email" required
-   placeholder="jane@example.com" />
-   </div>
-   <div>
-   <label for="message">Message</label>
-   <textarea id="message" name="message" required
-   placeholder="Say hello..." rows="5"></textarea>
-   </div>
-   <button type="submit" id="submit-btn">Send Message</button>
-   <p id="form-status"></p>
-   </form>
-   </section>
-   <script>
-// ── Supabase config ─────────────────────────────────────────────
-// Replace these two values with YOUR project URL and anon key
-const SUPABASE_URL = "https://zlxfdpkpxknibnwpmpam.supabase.co";
-const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpseGZkcGtweGtuaWJud3BtcGFtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwNjc1ODAsImV4cCI6MjA4ODY0MzU4MH0.82GYmNc1ORNbrOBn-4s7tVWmYAxwbX39xHHqkgAHBOk";
-// ── Form submission handler ──────────────────────────────────────
-document.getElementById("contact-form")
-.addEventListener("submit", async function (event) {
-// Prevent the default browser form submission (page reload)
-event.preventDefault();
-// Grab the form values
-const name = document.getElementById("name").value.trim();
-const email = document.getElementById("email").value.trim();
-const message = document.getElementById("message").value.trim();
-const btn = document.getElementById("submit-btn");
-const status = document.getElementById("form-status");
-// Disable the button while we send (prevents double-submit)
-btn.disabled = true;
-btn.textContent = "Sending...";
-status.textContent = "";
-try {
-// Call the Supabase REST API to insert a row
-const response = await fetch(
-`${SUPABASE_URL}/rest/v1/contact_messages`,
-{
-method: "POST",
-headers: {
-"Content-Type": "application/json",
-"apikey": SUPABASE_ANON,
-"Authorization": `Bearer ${SUPABASE_ANON}`,
-"Prefer": "return=minimal"
-},
-body: JSON.stringify({ name, email, message })
-}
-);
-if (response.ok) {
-// Success — show confirmation and reset the form
-status.textContent = "✓ Message sent! I will be in touch soon.";
-status.style.color = "#1A7A4A";
-event.target.reset();
-} else {
-// Supabase returned an error — log it for debugging
-const err = await response.json();
-console.error("Supabase error:", err);
-status.textContent = "Something went wrong. Please try again.";
-status.style.color = "#DC2626";
-}
-} catch (networkError) {
-// Network/connectivity problem
-console.error("Network error:", networkError);
-status.textContent = "Could not connect. Check your internet connection.";
-status.style.color = "#DC2626";
-} finally {
-// Always re-enable the button
-btn.disabled = false;
-btn.textContent = "Send Message";
-}
-});
-</script>
+    <div class="page-wrap">
+        
+        <header>
+            <div class="site-title">Sam Yip</div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#production-diary">Diary</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <section id="about">
+            <h1>Welcome to My Website!</h1>
+            <p>Hello! My name is Sam Yip and this is my first website.</p>
+            <p>I am learning web development at the University of York.</p>
+            
+            <h3>My Interests</h3>
+            <ul>
+                <li>Web Development</li>
+                <li>Computer Science</li>
+                <li>Technology</li>
+            </ul>
+        </section>
+
+        <section id="production-diary">
+            <h2>Production Diary – Week 15</h2>
+            <p class="project-meta">Date: 10 February 2026</p>
+            
+            <p>I am most happy with making my own site.</p>
+            
+            <p class="highlight">
+                Next time I want to improve the visual style of the website by adding custom CSS and experimenting with different colours.
+            </p>
+
+            <p>
+                This week I learn many new things from my lessons, like some function of program and learn about logic gate from computer architecture. 
+                I am proud of my whole website, because this is my first time to have an own website.
+            </p>
+            
+            <p class="highlight">
+                I think writing in English is the most challenging for me. Because English is not my first language and I am not good at it.
+            </p>
+        </section>
+
+        <section id="contact">
+            <h2>Get In Touch</h2>
+            <form id="contact-form">
+                <div style="margin-bottom: 1rem;">
+                    <label for="name" style="display:block;">Your Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Jane Smith" style="width:100%; padding:0.5rem;" />
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label for="email" style="display:block;">Your Email</label>
+                    <input type="email" id="email" name="email" required placeholder="jane@example.com" style="width:100%; padding:0.5rem;" />
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label for="message" style="display:block;">Message</label>
+                    <textarea id="message" name="message" required placeholder="Say hello..." rows="5" style="width:100%; padding:0.5rem;"></textarea>
+                </div>
+                <button type="submit" id="submit-btn" class="button">Send Message</button>
+                <p id="form-status"></p>
+            </form>
+        </section>
+
+    </div>
+
+    <script>
+        const SUPABASE_URL = "https://zlxfdpkpxknibnwpmpam.supabase.co";
+        const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpseGZkcGtweGtuaWJud3BtcGFtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwNjc1ODAsImV4cCI6MjA4ODY0MzU4MH0.82GYmNc1ORNbrOBn-4s7tVWmYAxwbX39xHHqkgAHBOk";
+        
+        document.getElementById("contact-form").addEventListener("submit", async function (event) {
+            event.preventDefault();
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const message = document.getElementById("message").value.trim();
+            const btn = document.getElementById("submit-btn");
+            const status = document.getElementById("form-status");
+
+            btn.disabled = true;
+            btn.textContent = "Sending...";
+            status.textContent = "";
+
+            try {
+                const response = await fetch(`${SUPABASE_URL}/rest/v1/contact_messages`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "apikey": SUPABASE_ANON,
+                        "Authorization": `Bearer ${SUPABASE_ANON}`,
+                        "Prefer": "return=minimal"
+                    },
+                    body: JSON.stringify({ name, email, message })
+                });
+
+                if (response.ok) {
+                    status.textContent = "✓ Message sent! I will be in touch soon.";
+                    status.style.color = "#1A7A4A";
+                    event.target.reset();
+                } else {
+                    status.textContent = "Something went wrong. Please try again.";
+                    status.style.color = "#DC2626";
+                }
+            } catch (networkError) {
+                status.textContent = "Could not connect. Check your internet connection.";
+            } finally {
+                btn.disabled = false;
+                btn.textContent = "Send Message";
+            }
+        });
+    </script>
 </body>
 </html>
